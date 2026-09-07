@@ -373,7 +373,10 @@ fn default_discovered_options() -> crate::executor_discovery::ExecutorDiscovered
     // no `--model`, so Claude uses its own current default (the latest model).
     // This keeps the choice future-proof instead of pinning to a versioned alias.
     let supports_effort = |id: &str| -> bool {
-        id == DEFAULT_MODEL_ID || id.contains("opus") || id.contains("sonnet")
+        id == DEFAULT_MODEL_ID
+            || id.contains("fable")
+            || id.contains("opus")
+            || id.contains("sonnet")
     };
 
     ExecutorDiscoveredOptions {
@@ -381,6 +384,7 @@ fn default_discovered_options() -> crate::executor_discovery::ExecutorDiscovered
             providers: vec![],
             models: [
                 (DEFAULT_MODEL_ID, "Default (latest)"),
+                ("fable", "Fable"),
                 ("opus", "Opus"),
                 ("opus[1m]", "Opus (1M context)"),
                 ("sonnet", "Sonnet"),
